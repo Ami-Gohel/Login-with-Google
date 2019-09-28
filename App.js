@@ -17,7 +17,7 @@ const instructions = Platform.select({
     'Shake or press menu button for dev menu',
 });
 GoogleSignin.configure({
-  iosClientId: '684269283733-q35m7ni95otk91th0e4444g2uu65hq1q.apps.googleusercontent.com',
+  iosClientId:  'YOUR_IOS_CLIENTID',
   offlineAccess: false
 });
 
@@ -75,16 +75,16 @@ export default class App extends Component {
         <Image source={{ uri: this.state.img }} style={{ height: 100, width: 100, }} />
         <Text>{this.state.name}</Text>
         <GoogleSigninButton
-          style={{ width: 250, height: 48 }}
+          style={styles.googleBtn}
           size={GoogleSigninButton.Size.Icon}
           color={GoogleSigninButton.Color.Light}
           onPress={() => GoogleSignin.signIn().then((user) => {
-            console.log(user.user)
+        
             this.setState({ name: user.user.givenName, img: user.user.photo })
           })}
           disabled={false}
         />
-        <TouchableOpacity onPress={() => this.signOut()} style={{ width: 250, backgroundColor: 'blue', height: 48 }} ></TouchableOpacity>
+        <TouchableOpacity onPress={() => this.signOut()} style={ styles.btn } ></TouchableOpacity>
       </View>
     );
   }
@@ -96,6 +96,15 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: '#F5FCFF',
+  },
+  googleBtn:{ 
+    width: 250,
+    height: 48 },
+  
+  btn:{
+    width: 250, 
+    backgroundColor: 'blue',
+    height: 48 
   },
   welcome: {
     fontSize: 20,
